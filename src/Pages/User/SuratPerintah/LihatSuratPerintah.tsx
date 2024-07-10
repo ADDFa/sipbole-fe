@@ -13,6 +13,7 @@ const LihatSuratPerintah = () => {
     useEffect(() => {
         const letter = searchParams.get("letter")!
         setPdf(`${Api.baseUrl}${letter}`)
+        console.log(`${Api.baseUrl}${letter}`)
     }, [searchParams])
 
     useEffect(() => {
@@ -34,11 +35,11 @@ const LihatSuratPerintah = () => {
 
                     <Card.Body>
                         {pdf ? (
-                            <iframe
+                            <embed
                                 width="100%"
                                 height="600px"
-                                title="PDF Viewer"
                                 src={pdf}
+                                type="application/pdf"
                             />
                         ) : (
                             <Spinner className="d-block mx-auto" />
