@@ -1,0 +1,37 @@
+.dashboard-main .card-main {
+    min-height: 200px;
+    max-height: 400px;
+}
+
+.dashboard-main .police-svg {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.dashboard-main .police-svg img[alt="Police"] {
+    width: inherit;
+    height: inherit;
+    position: absolute;
+    left: 0;
+}
+
+.dashboard-main .description {
+    max-width: 500px;
+    font-size: 10px;
+    color: rgba(0, 0, 0, .8);
+}
+
+@media screen and (width > 992px) {
+    .dashboard-main .description {
+        font-size: 12px;
+    }
+
+    .dashboard-main .police-svg {
+        min-height: 400px;
+    }
+
+    .dashboard-main .police-svg img[alt="Police"] {
+        transform: translateX(-100px);
+    }
+}

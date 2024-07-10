@@ -1,0 +1,19 @@
+@import url("../fonts/arimo.css");
+@import url("./nav.css");
+@import url("./pages/pages.css");
+@import url("./utils/fonts.css");
+@import url("./components/components.css");
+
+body {
+    background-color: #000070;
+    font-family: "Arimo", sans-serif;
+    color: #fff;
+}
+
+a {
+    text-decoration: none;
+}
+
+.w-fit {
+    width: fit-content;
+}

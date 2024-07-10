@@ -1,0 +1,38 @@
+.dashboard-nav .icon {
+    margin-inline: auto;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+}
+
+.dashboard-nav a :is(svg, p) {
+    color: #ffffff9f;
+    transition: 300ms;
+}
+
+.dashboard-nav a:hover :is(p, svg) {
+    color: #fff;
+}
+
+.dashboard-nav .icon.personel {
+    background-color: #ED9C5D;
+}
+
+.dashboard-nav .icon.kapal {
+    background-color: #A55DED;
+}
+
+.dashboard-nav .icon.sprint {
+    background-color: #ED5D5D;
+}
+
+.dashboard-nav .icon.laporan {
+    background-color: #EDDF5D;
+}
+
+.dashboard-nav .icon.jadwal {
+    background-color: #DC5EC7;
+}

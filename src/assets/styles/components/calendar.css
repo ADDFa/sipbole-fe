@@ -1,0 +1,24 @@
+.calendar {
+    margin-inline: auto;
+
+    display: grid;
+    grid-template-columns: repeat(7, 50px);
+    grid-auto-rows: 50px;
+    gap: 1px;
+    justify-content: center;
+}
+
+.calendar button {
+    border: 0;
+    border-radius: 4px;
+    transition: 600ms;
+}
+
+.calendar button:not(.active):hover {
+    background-color: #aaa;
+}
+
+.calendar .active {
+    background-color: #D43B3B;
+    color: #fff;
+}
