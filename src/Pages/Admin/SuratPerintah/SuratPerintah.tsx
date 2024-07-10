@@ -39,19 +39,30 @@ const SuratPerintah = () => {
 
             <main className="mt-5">
                 <Card>
-                    <Card.Header className="d-flex justify-content-between">
-                        <Card.Title>Surat Perintah</Card.Title>
+                    <Card.Header>
+                        <Row className="align-items-center row-cols-2">
+                            <Col>
+                                <Card.Title className="mb-0 fs-4 fs-6">
+                                    Surat Perintah
+                                </Card.Title>
+                            </Col>
 
-                        <div className="d-flex align-items-center gap-1">
-                            <BackButton />
-                            <Link
-                                className="btn btn-primary d-flex gap-3 align-items-center"
-                                to="/admin/surat-perintah/tambah"
-                            >
-                                <span>Kirim Surat Perintah</span>
-                                <FontAwesomeIcon icon={faArrowCircleRight} />
-                            </Link>
-                        </div>
+                            <Col className="text-end">
+                                <Link
+                                    className="btn btn-primary me-1"
+                                    to="/admin/surat-perintah/tambah"
+                                    title="Kirim Surat Perintah"
+                                >
+                                    <span className="d-none d-lg-inline">
+                                        Kirim Surat Perintah
+                                    </span>{" "}
+                                    <FontAwesomeIcon
+                                        icon={faArrowCircleRight}
+                                    />
+                                </Link>
+                                <BackButton />
+                            </Col>
+                        </Row>
                     </Card.Header>
 
                     <Card.Body>

@@ -40,18 +40,28 @@ const Personel = () => {
 
             <main className="mt-5">
                 <Card>
-                    <Card.Header className="d-flex justify-content-between align-items-center">
-                        <Card.Title className="mb-0">Data Personel</Card.Title>
+                    <Card.Header>
+                        <Row className="align-items-center row-cols-2">
+                            <Col>
+                                <Card.Title className="mb-0 fs-4 fs-6">
+                                    Data Personel
+                                </Card.Title>
+                            </Col>
 
-                        <div>
-                            <Link
-                                className="btn btn-primary me-1"
-                                to="/admin/personel/tambah"
-                            >
-                                + Tambah personel
-                            </Link>
-                            <BackButton />
-                        </div>
+                            <Col className="text-end">
+                                <Link
+                                    className="btn btn-primary me-1"
+                                    to="/admin/personel/tambah"
+                                    title="Tambah Personel"
+                                >
+                                    +{" "}
+                                    <span className="d-none d-lg-inline">
+                                        Tambah personel
+                                    </span>
+                                </Link>
+                                <BackButton />
+                            </Col>
+                        </Row>
                     </Card.Header>
 
                     <Card.Body>

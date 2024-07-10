@@ -9,7 +9,7 @@ const BackButton = () => {
     }
 
     return (
-        <Button variant="warning" onClick={handleClick}>
+        <Button type="button" variant="warning" onClick={handleClick}>
             Kembali
         </Button>
     )

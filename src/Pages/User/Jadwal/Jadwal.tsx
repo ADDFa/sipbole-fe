@@ -1,10 +1,9 @@
-import BackButton from "Components/BackButton"
+import BackArrow from "Components/BackArrow"
 import Calendar from "Components/Calendar"
 import Api from "Functions/Api"
 import Header from "Pages/Components/Header"
 import { useState } from "react"
 import { Card, Container } from "react-bootstrap"
-import { Link } from "react-router-dom"
 
 const Jadwal = () => {
     const [schedules, setSchedules] = useState<CalendarMarks[]>()
@@ -42,19 +41,10 @@ const Jadwal = () => {
             <main className="mt-5 print-hidden">
                 <Card>
                     <Card.Header className="d-flex justify-content-between align-items-center">
-                        <Card.Title className="mb-0">
+                        <Card.Title className="mb-0 fs-4 fs-6">
                             Jadwal Riksa Kapal
                         </Card.Title>
-
-                        <div>
-                            <Link
-                                className="btn btn-primary me-1"
-                                to="/admin/jadwal/tambah"
-                            >
-                                + Tambah Jadwal
-                            </Link>
-                            <BackButton />
-                        </div>
+                        <BackArrow />
                     </Card.Header>
 
                     <Card.Body className="mt-4">

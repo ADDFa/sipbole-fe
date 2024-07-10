@@ -17,3 +17,15 @@ a {
 .w-fit {
     width: fit-content;
 }
+
+/* @media screen and (width < 768px) {
+    .d-md-none {
+        display: none;
+    }
+}
+
+@media screen and (width >=768px) {
+    .d-lg-none {
+        display: none;
+    }
+} */

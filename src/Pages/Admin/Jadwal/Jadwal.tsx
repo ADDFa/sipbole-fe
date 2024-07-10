@@ -5,7 +5,7 @@ import Calendar from "Components/Calendar"
 import Api from "Functions/Api"
 import Header from "Pages/Components/Header"
 import { useState } from "react"
-import { Card, Container } from "react-bootstrap"
+import { Card, Col, Container, Row } from "react-bootstrap"
 import { Link } from "react-router-dom"
 
 const Jadwal = () => {
@@ -48,20 +48,28 @@ const Jadwal = () => {
 
             <main className="mt-5 print-hidden">
                 <Card>
-                    <Card.Header className="d-flex justify-content-between align-items-center">
-                        <Card.Title className="mb-0">
-                            Jadwal Riksa Kapal
-                        </Card.Title>
+                    <Card.Header>
+                        <Row className="align-items-center row-cols-2">
+                            <Col>
+                                <Card.Title className="mb-0 fs-4 fs-6">
+                                    Jadwal Riksa Kapal
+                                </Card.Title>
+                            </Col>
 
-                        <div>
-                            <Link
-                                className="btn btn-primary me-1"
-                                to="/admin/jadwal/tambah"
-                            >
-                                + Tambah Jadwal
-                            </Link>
-                            <BackButton />
-                        </div>
+                            <Col className="text-end">
+                                <Link
+                                    className="btn btn-primary me-1"
+                                    to="/admin/jadwal/tambah"
+                                    title="Tambah Jadwal Riksa Kapal"
+                                >
+                                    +{" "}
+                                    <span className="d-none d-lg-inline">
+                                        Tambah Jadwal Riksa Kapal
+                                    </span>
+                                </Link>
+                                <BackButton />
+                            </Col>
+                        </Row>
                     </Card.Header>
 
                     <Card.Body className="mt-4">

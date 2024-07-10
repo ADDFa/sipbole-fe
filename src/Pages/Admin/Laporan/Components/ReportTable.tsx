@@ -100,7 +100,7 @@ const ReportTable: FC<Report.ReportTable> = ({ reports }) => {
                     reportVal[month]["sar_or_laka_air"] += 1
                     break
 
-                case "PATROLI PERAIRAN":
+                case "BINMAS PERAIRAN":
                     reportVal[month]["binmas_perairan"] += 1
                     break
             }

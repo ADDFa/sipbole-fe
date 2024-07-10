@@ -50,7 +50,7 @@ const SuratPerintah = () => {
 
             <main className="mt-5">
                 <Card>
-                    <Card.Header className="d-flex justify-content-between align-items-center">
+                    <Card.Header className="d-flex justify-content-between">
                         <Card.Title>Daftar Surat Perintah</Card.Title>
                         <BackArrow />
                     </Card.Header>

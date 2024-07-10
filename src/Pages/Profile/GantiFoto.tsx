@@ -59,9 +59,7 @@ const GantiFoto = () => {
 
                         <Card className="rounded-4 mt-3">
                             <Card.Body>
-                                <Card.Title className="fw-bold">
-                                    Edit Profile
-                                </Card.Title>
+                                <Card.Title>Edit Profile</Card.Title>
 
                                 <form onSubmit={handleSubmit}>
                                     <input
@@ -71,10 +69,7 @@ const GantiFoto = () => {
                                     />
 
                                     <div className="mb-3 mt-5">
-                                        <FormLabel
-                                            className="fw-bold"
-                                            htmlFor="profile_picture"
-                                        >
+                                        <FormLabel htmlFor="profile_picture">
                                             Upload Foto
                                         </FormLabel>
                                         <FormControl

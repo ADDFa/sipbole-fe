@@ -44,7 +44,7 @@ const Dashboard = () => {
             </Header>
 
             <nav className="my-5 dashboard-nav">
-                <Row>
+                <Row className={Auth.role === "admin" ? "row-cols-5" : ""}>
                     {navs.map((props, i) => (
                         <NavItem {...props} key={i} />
                     ))}

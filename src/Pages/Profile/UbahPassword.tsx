@@ -26,9 +26,7 @@ const UbahPassword = () => {
             <main className="mt-5 mx-0">
                 <Card className="rounded-4">
                     <Card.Header>
-                        <Card.Title className="fw-bold">
-                            Ganti Password
-                        </Card.Title>
+                        <Card.Title>Ganti Password</Card.Title>
                     </Card.Header>
 
                     <Card.Body>

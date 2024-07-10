@@ -2,8 +2,8 @@
     margin-inline: auto;
 
     display: grid;
-    grid-template-columns: repeat(7, 50px);
-    grid-auto-rows: 50px;
+    grid-template-columns: repeat(7, 40px);
+    grid-auto-rows: 40px;
     gap: 1px;
     justify-content: center;
 }

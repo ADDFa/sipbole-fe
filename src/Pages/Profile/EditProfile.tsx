@@ -47,9 +47,7 @@ const EditProfile = () => {
             <main className="mt-5 mx-0">
                 <Card className="rounded-4">
                     <Card.Header>
-                        <Card.Title className="fw-bold">
-                            Edit Profile
-                        </Card.Title>
+                        <Card.Title>Edit Profile</Card.Title>
                     </Card.Header>
 
                     <Card.Body>
@@ -62,12 +60,7 @@ const EditProfile = () => {
                                 />
 
                                 <div className="mb-3">
-                                    <FormLabel
-                                        htmlFor="name"
-                                        className="fw-bold"
-                                    >
-                                        Nama
-                                    </FormLabel>
+                                    <FormLabel htmlFor="name">Nama</FormLabel>
                                     <FormControl
                                         defaultValue={user.name}
                                         name="name"
@@ -75,10 +68,7 @@ const EditProfile = () => {
                                     />
                                 </div>
                                 <div className="mb-3">
-                                    <FormLabel
-                                        htmlFor="username"
-                                        className="fw-bold"
-                                    >
+                                    <FormLabel htmlFor="username">
                                         Username
                                     </FormLabel>
                                     <FormControl
