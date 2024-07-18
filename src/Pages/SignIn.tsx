@@ -1,11 +1,18 @@
 import Logo from "Components/Logo"
-import { Button, Container, FormControl, FormLabel } from "react-bootstrap"
+import {
+    Button,
+    Card,
+    Container,
+    FormControl,
+    FormLabel
+} from "react-bootstrap"
 import "Functions/Api"
 import Api from "Functions/Api"
 import Auth from "Functions/Auth"
 import { useNavigate } from "react-router-dom"
 import useHandleSubmit from "Hooks/useHandleSubmit"
 import FormPassword from "Components/FormPassword"
+import boat from "assets/images/boat.jpg"
 
 const SignIn = () => {
     const navigate = useNavigate()
@@ -22,7 +29,7 @@ const SignIn = () => {
     const handleSubmit = useHandleSubmit(signIn)
 
     return (
-        <Container className="overflow-y-hidden vh-100">
+        <Container className="vh-100">
             <div className="text-center">
                 <h3 className="text-center mt-3">
                     Hallo <br /> Selamat Datang
@@ -30,8 +37,10 @@ const SignIn = () => {
                 <Logo width={170} />
             </div>
 
-            <div className="bg-light py-3 px-4 rounded-top-5 mt-3 vh-100 text-primary">
-                <form onSubmit={handleSubmit}>
+            <div className="bg-light py-3 px-4 rounded-top-5 mt-3 text-primary">
+                <Card.Img src={boat} className="boat-image-sign-in" />
+
+                <form onSubmit={handleSubmit} className="sign-in-form">
                     <div className="mb-3 mt-5">
                         <FormLabel htmlFor="username">Username</FormLabel>
                         <FormControl name="username" id="username" />
