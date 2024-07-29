@@ -1,6 +1,6 @@
 import { Col, Container, Row } from "react-bootstrap"
 import { lazy, Suspense, useEffect, useState } from "react"
-import police from "assets/images/police.svg"
+import logo from "assets/logo.png"
 import Header from "Pages/Components/Header"
 import Auth from "Functions/Auth"
 import NavItem from "./Components/NavItem"
@@ -53,14 +53,14 @@ const Dashboard = () => {
 
             <main className="dashboard-main mb-5">
                 <Container>
-                    <section className="card-main">
-                        <Row className="bg-light cols-2 rounded-5">
-                            <Col className="col-5 col-lg-6">
+                    <section className="card-main mb-4">
+                        <Row className="bg-light row-cols-lg-2 row-cols-1 rounded-5 p-2 g-1">
+                            <Col className="col-lg-auto py-4">
                                 <div className="police-svg">
-                                    <img src={police} alt="Police" />
+                                    <img src={logo} alt="Police" />
                                 </div>
                             </Col>
-                            <Col className="text-dark col-7 col-lg-6">
+                            <Col className="text-dark">
                                 <h1 className="fs-2 fw-bold mt-4">SI_PAL</h1>
                                 <p className="mb-0">Sistem Pelaporan Online</p>
                                 <p className="description">

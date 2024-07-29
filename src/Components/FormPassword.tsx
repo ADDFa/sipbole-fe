@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { FC, useState } from "react"
 import { FormControl, FormLabel } from "react-bootstrap"
 
-const FormPassword: FC<FormPassword> = ({ label, name }) => {
+const FormPassword: FC<FormPassword> = ({ label, name, className }) => {
     const [hidden, setHidden] = useState(true)
 
     const handleClick = () => {
@@ -18,6 +18,7 @@ const FormPassword: FC<FormPassword> = ({ label, name }) => {
                     id={name || "password"}
                     name={name || "password"}
                     type={hidden ? "password" : "text"}
+                    className={className || ""}
                 />
                 <FontAwesomeIcon
                     icon={hidden ? faEye : faEyeSlash}

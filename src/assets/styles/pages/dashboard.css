@@ -4,16 +4,13 @@
 }
 
 .dashboard-main .police-svg {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .dashboard-main .police-svg img[alt="Police"] {
-    width: inherit;
-    height: inherit;
-    position: absolute;
-    left: 0;
+    width: 300px;
+    margin: 0 2rem 0 3rem;
 }
 
 .dashboard-main .description {
@@ -25,13 +22,5 @@
 @media screen and (width > 992px) {
     .dashboard-main .description {
         font-size: 12px;
-    }
-
-    .dashboard-main .police-svg {
-        min-height: 400px;
-    }
-
-    .dashboard-main .police-svg img[alt="Police"] {
-        transform: translateX(-100px);
     }
 }
