@@ -60,9 +60,9 @@ const TambahSuratPerintah = () => {
                                         <option value="Harkamtibmas">
                                             Harkamtibmas
                                         </option>
-                                        <option value="Kegiatan Unggulan">
+                                        {/* <option value="Kegiatan Unggulan">
                                             Kegiatan Unggulan
-                                        </option>
+                                        </option> */}
                                     </FormSelect>
                                 </div>
                                 <div className="mb-4">

@@ -20,11 +20,20 @@ import {
 } from "react-bootstrap"
 
 const LaporkanKegiatan = () => {
+    const [reportedDate, setReportedDate] = useState("")
     const [activities, setActivities] = useState<Api.Data[]>()
     const [warrants, setWarrants] = useState<Api.Data[]>()
     const [user, setUser] = useState<Api.Data>()
 
     useEffect(() => {
+        const d = new Date()
+        let date: string | number = d.getDate()
+        date = date < 10 ? `0${date}` : `${date}`
+        let month: string | number = d.getMonth() + 1
+        month = month < 10 ? `0${month}` : `${month}`
+        const updateReportedDate = `${d.getFullYear()}-${month}-${date}`
+        setReportedDate(updateReportedDate)
+
         Api.get(`user/${Auth.userId}`).then(async (res) => {
             const data = await res.json()
             setUser(data)
@@ -103,6 +112,28 @@ const LaporkanKegiatan = () => {
                                             )
                                         )}
                                     </FormSelect>
+                                </div>
+                                <div className="mb-4">
+                                    <FormLabel htmlFor="execution_warrant">
+                                        Surat Perintah Pelaksanaan
+                                    </FormLabel>
+                                    <FormControl
+                                        name="execution_warrant"
+                                        id="execution_warrant"
+                                        type="file"
+                                        accept="application/pdf"
+                                    />
+                                </div>
+                                <div className="mb-4">
+                                    <FormLabel htmlFor="reported_date">
+                                        Tanggal Dilaporkan
+                                    </FormLabel>
+                                    <FormControl
+                                        name="reported_date"
+                                        id="reported_date"
+                                        type="date"
+                                        defaultValue={reportedDate}
+                                    />
                                 </div>
                                 <div className="mb-4">
                                     <FormLabel htmlFor="report">

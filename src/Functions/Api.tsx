@@ -2,7 +2,8 @@ import Auth from "./Auth"
 import HandleError from "./HandleError"
 
 class Api {
-    private static url = "https://si-pal.com"
+    // private static url = "https://si-pal.com"
+    private static url = "http://127.0.0.1:8000"
 
     static get baseUrl() {
         return this.url

@@ -14,7 +14,7 @@ const Type: FC<Report.Type> = ({ type, setType }) => {
                     Harkamtibmas
                 </Button>
             </Col>
-            <Col className="col-auto">
+            {/* <Col className="col-auto">
                 <Button
                     variant={`${
                         type === "Kegiatan Unggulan" ? "" : "outline-"
@@ -23,7 +23,7 @@ const Type: FC<Report.Type> = ({ type, setType }) => {
                 >
                     Kegiatan Unggulan
                 </Button>
-            </Col>
+            </Col> */}
         </Row>
     )
 }
