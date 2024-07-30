@@ -142,8 +142,8 @@ const LaporkanKegiatan = () => {
                                     <FormControl
                                         name="report"
                                         id="report"
-                                        as="textarea"
-                                        rows={10}
+                                        type="file"
+                                        accept="application/pdf"
                                     />
                                 </div>
 
