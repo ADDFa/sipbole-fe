@@ -1,6 +1,7 @@
 import {
     faFilePdf,
     faInfoCircle,
+    faListCheck,
     faTriangleExclamation
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -10,6 +11,7 @@ import Api from "Functions/Api"
 import Header from "Pages/Components/Header"
 import {
     ChangeEventHandler,
+    Fragment,
     lazy,
     Suspense,
     useCallback,
@@ -28,6 +30,7 @@ import {
 import { Link } from "react-router-dom"
 
 const LetterModal = lazy(() => import("./Components/LetterModal"))
+const LetterTextModal = lazy(() => import("./Components/LetterTextModal"))
 
 const DaftarLaporan = () => {
     const [reports, setReports] = useState<Api.Data[]>()
@@ -37,6 +40,7 @@ const DaftarLaporan = () => {
     const [showLetter, setShowLetter] = useState("")
     const [showLetterModal, setShowLetterModal] = useState(false)
     const [letterModalTitle, setLetterModalTitle] = useState("")
+    const [showLetterTextModal, setShowLetterTextModal] = useState(false)
 
     const getReport = useCallback(() => {
         setLoading(true)
@@ -54,7 +58,6 @@ const DaftarLaporan = () => {
             const reports = await e.json()
             setReports(reports)
             setLoading(false)
-            console.log(reports)
         })
     }, [year, month])
 
@@ -69,6 +72,7 @@ const DaftarLaporan = () => {
     }, [showLetter])
 
     useEffect(() => {
+        if (!year || !month) setReports(undefined)
         getReport()
     }, [year, month])
 
@@ -120,7 +124,7 @@ const DaftarLaporan = () => {
                         <div className="d-flex align-items-center gap-2">
                             <BackArrow />
                             <Link
-                                to="/laporkan-kegiatan"
+                                to="/laporkan-kegiatan#patroli"
                                 className="btn btn-primary"
                             >
                                 Laporkan Kegiatan
@@ -196,7 +200,9 @@ const DaftarLaporan = () => {
                                                     date,
                                                     warrant,
                                                     execution_warrant,
-                                                    report
+                                                    report,
+                                                    category,
+                                                    report_text
                                                 },
                                                 i
                                             ) => (
@@ -247,21 +253,62 @@ const DaftarLaporan = () => {
                                                         </button>
                                                     </td>
                                                     <td className="text-center">
-                                                        <button
-                                                            className="btn btn-primary"
-                                                            onClick={() => {
-                                                                setShowLetter(
-                                                                    report
-                                                                )
-                                                                setLetterModalTitle(
-                                                                    "Laporan Kegiatan"
-                                                                )
-                                                            }}
-                                                        >
-                                                            <FontAwesomeIcon
-                                                                icon={faFilePdf}
-                                                            />
-                                                        </button>
+                                                        {category ===
+                                                            "file" && (
+                                                            <button
+                                                                className="btn btn-primary"
+                                                                onClick={() => {
+                                                                    setShowLetter(
+                                                                        report
+                                                                    )
+                                                                    setLetterModalTitle(
+                                                                        "Laporan Kegiatan"
+                                                                    )
+                                                                }}
+                                                            >
+                                                                <FontAwesomeIcon
+                                                                    icon={
+                                                                        faFilePdf
+                                                                    }
+                                                                />
+                                                            </button>
+                                                        )}
+
+                                                        {category ===
+                                                            "text" && (
+                                                            <Fragment>
+                                                                <button
+                                                                    className="btn btn-primary"
+                                                                    onClick={() =>
+                                                                        setShowLetterTextModal(
+                                                                            true
+                                                                        )
+                                                                    }
+                                                                >
+                                                                    <FontAwesomeIcon
+                                                                        icon={
+                                                                            faListCheck
+                                                                        }
+                                                                    />
+                                                                </button>
+
+                                                                <Suspense>
+                                                                    <LetterTextModal
+                                                                        show={
+                                                                            showLetterTextModal
+                                                                        }
+                                                                        onHide={() => {
+                                                                            setShowLetterTextModal(
+                                                                                false
+                                                                            )
+                                                                        }}
+                                                                        text={
+                                                                            report_text
+                                                                        }
+                                                                    />
+                                                                </Suspense>
+                                                            </Fragment>
+                                                        )}
                                                     </td>
                                                 </tr>
                                             )

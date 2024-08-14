@@ -13,7 +13,11 @@ class Alert {
             showConfirmButton: false,
             timer: 2000,
             timerProgressBar: true,
-            icon: "success"
+            icon: "success",
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer
+                toast.onmouseleave = Swal.resumeTimer
+            }
         })
     }
 

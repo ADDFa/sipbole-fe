@@ -19,4 +19,17 @@ namespace Report {
         sar_or_laka_air: number
         binmas_perairan: number
     }
+
+    interface LetterModal {
+        title: string
+        show: boolean
+        onHide: () => void
+        letter: string
+    }
+
+    interface LetterTextModal {
+        show: boolean
+        onHide: () => void
+        text: string
+    }
 }

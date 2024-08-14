@@ -2,7 +2,7 @@ import Api from "Functions/Api"
 import { FC } from "react"
 import { Modal } from "react-bootstrap"
 
-const LetterModal: FC<SuratPerintah.LetterModal> = ({
+const LetterModal: FC<Report.LetterModal> = ({
     show,
     onHide,
     title,
