@@ -41,10 +41,10 @@ const nav: Dashboard.Nav = {
     ],
     user: [
         {
-            to: "/laporkan-kegiatan",
+            to: "/laporan",
             className: "laporan",
             icon: faFileInvoice,
-            text: "Lapor"
+            text: "Laporan"
         },
         {
             to: "/surat-perintah",

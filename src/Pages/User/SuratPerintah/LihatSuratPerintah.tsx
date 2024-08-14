@@ -13,7 +13,6 @@ const LihatSuratPerintah = () => {
     useEffect(() => {
         const letter = searchParams.get("letter")!
         setPdf(`${Api.baseUrl}${letter}`)
-        console.log(`${Api.baseUrl}${letter}`)
     }, [searchParams])
 
     useEffect(() => {

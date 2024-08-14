@@ -6,4 +6,11 @@ namespace SuratPerintah {
             React.SetStateAction<Api.Data[] | undefined>
         >
     }
+
+    interface LetterModal {
+        title: string
+        show: boolean
+        onHide: () => void
+        letter: string
+    }
 }
