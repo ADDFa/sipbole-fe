@@ -1,7 +1,5 @@
 import {
-    faFilePdf,
     faInfoCircle,
-    faListCheck,
     faTriangleExclamation
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -9,15 +7,7 @@ import BackArrow from "Components/BackArrow"
 import BackButton from "Components/BackButton"
 import Api from "Functions/Api"
 import Header from "Pages/Components/Header"
-import {
-    ChangeEventHandler,
-    Fragment,
-    lazy,
-    Suspense,
-    useCallback,
-    useEffect,
-    useState
-} from "react"
+import { ChangeEventHandler, useCallback, useEffect, useState } from "react"
 import {
     Alert,
     Card,
@@ -28,19 +18,14 @@ import {
     Spinner
 } from "react-bootstrap"
 import { Link } from "react-router-dom"
-
-const LetterModal = lazy(() => import("./Components/LetterModal"))
-const LetterTextModal = lazy(() => import("./Components/LetterTextModal"))
+import LetterModal from "./Components/LetterModal"
+import LetterTextModal from "./Components/LetterTextModal"
 
 const DaftarLaporan = () => {
     const [reports, setReports] = useState<Api.Data[]>()
     const [loading, setLoading] = useState(false)
     const [month, setMonth] = useState<string>()
     const [year, setYear] = useState<string>()
-    const [showLetter, setShowLetter] = useState("")
-    const [showLetterModal, setShowLetterModal] = useState(false)
-    const [letterModalTitle, setLetterModalTitle] = useState("")
-    const [showLetterTextModal, setShowLetterTextModal] = useState(false)
 
     const getReport = useCallback(() => {
         setLoading(true)
@@ -58,18 +43,9 @@ const DaftarLaporan = () => {
             const reports = await e.json()
             setReports(reports)
             setLoading(false)
+            console.log(reports)
         })
     }, [year, month])
-
-    const onHideLetterModal = () => {
-        setShowLetter("")
-        setShowLetterModal(false)
-    }
-
-    useEffect(() => {
-        if (!showLetter) return
-        setShowLetterModal(true)
-    }, [showLetter])
 
     useEffect(() => {
         if (!year || !month) setReports(undefined)
@@ -101,17 +77,6 @@ const DaftarLaporan = () => {
 
     return (
         <Container>
-            {showLetter && (
-                <Suspense>
-                    <LetterModal
-                        show={showLetterModal}
-                        onHide={onHideLetterModal}
-                        letter={showLetter}
-                        title={letterModalTitle}
-                    />
-                </Suspense>
-            )}
-
             <Header>
                 <h3>Laporkan Kegiatan</h3>
             </Header>
@@ -217,97 +182,38 @@ const DaftarLaporan = () => {
                                                         {date}
                                                     </td>
                                                     <td className="text-center">
-                                                        <button
-                                                            className="btn btn-primary"
-                                                            onClick={() => {
-                                                                setShowLetter(
-                                                                    warrant?.letter ||
-                                                                        ""
-                                                                )
-
-                                                                setLetterModalTitle(
-                                                                    "Surat Perintah"
-                                                                )
-                                                            }}
-                                                        >
-                                                            <FontAwesomeIcon
-                                                                icon={faFilePdf}
-                                                            />
-                                                        </button>
+                                                        <LetterModal
+                                                            letter={
+                                                                warrant?.letter ||
+                                                                ""
+                                                            }
+                                                            title="Surat Perintah"
+                                                        />
                                                     </td>
                                                     <td className="text-center">
-                                                        <button
-                                                            className="btn btn-primary"
-                                                            onClick={() => {
-                                                                setShowLetter(
-                                                                    execution_warrant
-                                                                )
-                                                                setLetterModalTitle(
-                                                                    "Surat Perintah Pelaksanaan"
-                                                                )
-                                                            }}
-                                                        >
-                                                            <FontAwesomeIcon
-                                                                icon={faFilePdf}
-                                                            />
-                                                        </button>
+                                                        <LetterModal
+                                                            letter={
+                                                                execution_warrant
+                                                            }
+                                                            title="Surat Perintah Pelaksanaan"
+                                                        />
                                                     </td>
                                                     <td className="text-center">
                                                         {category ===
                                                             "file" && (
-                                                            <button
-                                                                className="btn btn-primary"
-                                                                onClick={() => {
-                                                                    setShowLetter(
-                                                                        report
-                                                                    )
-                                                                    setLetterModalTitle(
-                                                                        "Laporan Kegiatan"
-                                                                    )
-                                                                }}
-                                                            >
-                                                                <FontAwesomeIcon
-                                                                    icon={
-                                                                        faFilePdf
-                                                                    }
-                                                                />
-                                                            </button>
+                                                            <LetterModal
+                                                                title="Laporan Kegiatan"
+                                                                letter={report}
+                                                            />
                                                         )}
 
                                                         {category ===
                                                             "text" && (
-                                                            <Fragment>
-                                                                <button
-                                                                    className="btn btn-primary"
-                                                                    onClick={() =>
-                                                                        setShowLetterTextModal(
-                                                                            true
-                                                                        )
-                                                                    }
-                                                                >
-                                                                    <FontAwesomeIcon
-                                                                        icon={
-                                                                            faListCheck
-                                                                        }
-                                                                    />
-                                                                </button>
-
-                                                                <Suspense>
-                                                                    <LetterTextModal
-                                                                        show={
-                                                                            showLetterTextModal
-                                                                        }
-                                                                        onHide={() => {
-                                                                            setShowLetterTextModal(
-                                                                                false
-                                                                            )
-                                                                        }}
-                                                                        text={
-                                                                            report_text
-                                                                        }
-                                                                    />
-                                                                </Suspense>
-                                                            </Fragment>
+                                                            <LetterTextModal
+                                                                text={
+                                                                    report_text
+                                                                }
+                                                            />
                                                         )}
                                                     </td>
                                                 </tr>

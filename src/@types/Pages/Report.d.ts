@@ -22,14 +22,10 @@ namespace Report {
 
     interface LetterModal {
         title: string
-        show: boolean
-        onHide: () => void
         letter: string
     }
 
     interface LetterTextModal {
-        show: boolean
-        onHide: () => void
         text: string
     }
 }
