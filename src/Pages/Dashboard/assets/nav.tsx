@@ -33,10 +33,10 @@ const nav: Dashboard.Nav = {
             text: "Laporan"
         },
         {
-            to: "/admin/jadwal",
-            className: "jadwal",
+            to: "/admin/laporkan-sar",
+            className: "laporkan",
             icon: faCalendarDays,
-            text: "Jadwal"
+            text: "Laporkan"
         }
     ],
     user: [

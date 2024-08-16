@@ -10,10 +10,6 @@ import TambahSuratPerintah from "Pages/Admin/SuratPerintah/TambahSuratPerintah"
 import Laporan from "Pages/Admin/Laporan/Laporan"
 import type { RouteObject } from "react-router-dom"
 import DetailKapal from "Pages/Admin/Kapal/DetailKapal"
-import Jadwal from "Pages/Admin/Jadwal/Jadwal"
-import TambahJadwal from "Pages/Admin/Jadwal/TambahJadwal"
-import ListJadwal from "Pages/Admin/Jadwal/ListJadwal"
-import EditJadwal from "Pages/Admin/Jadwal/EditJadwal"
 
 const routes: RouteObject[] = [
     {
@@ -59,22 +55,6 @@ const routes: RouteObject[] = [
     {
         path: "personel/:id/edit",
         element: <EditPersonel />
-    },
-    {
-        path: "jadwal",
-        element: <Jadwal />
-    },
-    {
-        path: "jadwal/tambah",
-        element: <TambahJadwal />
-    },
-    {
-        path: "jadwal/edit",
-        element: <ListJadwal />
-    },
-    {
-        path: "jadwal/edit/:id",
-        element: <EditJadwal />
     }
 ]
 
