@@ -2,6 +2,7 @@ import {
     faCalendarDays,
     faFileInvoice,
     faFilePdf,
+    faFilePen,
     faPeopleGroup,
     faShip
 } from "@fortawesome/free-solid-svg-icons"
@@ -35,7 +36,7 @@ const nav: Dashboard.Nav = {
         {
             to: "/admin/laporkan-sar",
             className: "laporkan",
-            icon: faCalendarDays,
+            icon: faFilePen,
             text: "Laporkan"
         }
     ],

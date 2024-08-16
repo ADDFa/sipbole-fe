@@ -1,3 +1,4 @@
+import { months } from "App/Config"
 import BackArrow from "Components/BackArrow"
 import Calendar from "Components/Calendar"
 import Api from "Functions/Api"
@@ -6,28 +7,23 @@ import { useState } from "react"
 import { Card, Container } from "react-bootstrap"
 
 const Jadwal = () => {
-    const [schedules, setSchedules] = useState<CalendarMarks[]>()
+    const [schedules, setSchedules] = useState<CalendarMarks[]>([])
 
-    const onCalendarValue: OnCalendarValue = ({ year, monthIndex }) => {
-        let month: string | number = monthIndex + 1
-        month = month < 10 ? `0${month}` : month
+    const onCalendarValue: OnCalendarValue = ({ monthIndex, year }) => {
+        const month = months[monthIndex]
+        const url = new URL(Api.baseUrl)
+        url.pathname = "api/report"
+        url.search = `?year=${year}&month=${month}`
 
-        const path = new URL(Api.baseUrl)
-        path.pathname = "api/schedule"
-        path.search = `?year=${year}&month=${month}`
-
-        Api.get(path).then(async (res) => {
+        Api.get(url).then(async (res) => {
             if (!res.ok) return
 
-            const data: Record<string, any>[] = await res.json()
             const schedules: CalendarMarks[] = []
-            data.forEach(({ date, description }) => {
-                schedules.push({
-                    title: description,
-                    value: parseInt(date)
-                })
+            const reports: Api.Data[] = await res.json()
+            reports.map(({ date }) => {
+                const value = parseInt(date)
+                schedules.push({ value, title: "" })
             })
-
             setSchedules(schedules)
         })
     }
@@ -48,7 +44,7 @@ const Jadwal = () => {
                     </Card.Header>
 
                     <Card.Body className="mt-4">
-                        <Calendar onValue={onCalendarValue} marks={schedules} />
+                        <Calendar marks={schedules} onValue={onCalendarValue} />
                     </Card.Body>
                 </Card>
             </main>

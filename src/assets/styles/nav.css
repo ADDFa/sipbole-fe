@@ -33,6 +33,6 @@
     background-color: #EDDF5D;
 }
 
-.dashboard-nav .icon.laporkan {
+.dashboard-nav .icon:is(.laporkan, .jadwal) {
     background-color: #DC5EC7;
 }

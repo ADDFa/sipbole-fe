@@ -10,6 +10,7 @@ import TambahSuratPerintah from "Pages/Admin/SuratPerintah/TambahSuratPerintah"
 import Laporan from "Pages/Admin/Laporan/Laporan"
 import type { RouteObject } from "react-router-dom"
 import DetailKapal from "Pages/Admin/Kapal/DetailKapal"
+import Laporkan from "Pages/Admin/Laporan/Laporkan"
 
 const routes: RouteObject[] = [
     {
@@ -55,6 +56,10 @@ const routes: RouteObject[] = [
     {
         path: "personel/:id/edit",
         element: <EditPersonel />
+    },
+    {
+        path: "laporkan-sar",
+        element: <Laporkan />
     }
 ]
 

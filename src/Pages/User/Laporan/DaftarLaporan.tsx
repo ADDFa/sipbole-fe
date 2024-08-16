@@ -20,6 +20,7 @@ import {
 import { Link } from "react-router-dom"
 import LetterModal from "./Components/LetterModal"
 import LetterTextModal from "./Components/LetterTextModal"
+import { months } from "App/Config"
 
 const DaftarLaporan = () => {
     const [reports, setReports] = useState<Api.Data[]>()
@@ -56,20 +57,6 @@ const DaftarLaporan = () => {
         const input = e.currentTarget
         const dates = input.value.split("-")
         const monthIndex = parseInt(dates[1]) - 1
-        const months = [
-            "Jan",
-            "Feb",
-            "Mar",
-            "Apr",
-            "Mei",
-            "Jun",
-            "Jul",
-            "Agu",
-            "Sep",
-            "Okt",
-            "Nov",
-            "Des"
-        ]
 
         setYear(dates[0])
         setMonth(months[monthIndex])
@@ -89,7 +76,7 @@ const DaftarLaporan = () => {
                         <div className="d-flex align-items-center gap-2">
                             <BackArrow />
                             <Link
-                                to="/laporkan-kegiatan#patroli"
+                                to="/laporkan-kegiatan"
                                 className="btn btn-primary"
                             >
                                 Laporkan Kegiatan

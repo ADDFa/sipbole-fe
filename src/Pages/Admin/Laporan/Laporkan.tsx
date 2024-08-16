@@ -1,5 +1,12 @@
 import BackArrow from "Components/BackArrow"
+import BackButton from "Components/BackButton"
+import QuillSnowEditor from "Components/QuillSnowEditor"
+import Alert from "Functions/Alert"
+import Api from "Functions/Api"
+import Auth from "Functions/Auth"
+import useHandleSubmit from "Hooks/useHandleSubmit"
 import Header from "Pages/Components/Header"
+import { FormEventHandler, useEffect, useState } from "react"
 import {
     Button,
     Card,
@@ -8,25 +15,16 @@ import {
     FormCheck,
     FormControl,
     FormLabel,
-    FormSelect,
     Row,
     Spinner
 } from "react-bootstrap"
-import { FormEventHandler, Fragment, useEffect, useState } from "react"
-import Api from "Functions/Api"
-import Auth from "Functions/Auth"
-import Alert from "Functions/Alert"
-import useHandleSubmit from "Hooks/useHandleSubmit"
-import QuillSnowEditor from "Components/QuillSnowEditor"
-import BackButton from "Components/BackButton"
+import { Fragment } from "react/jsx-runtime"
 
-const LaporkanKegiatan = () => {
+const Laporkan = () => {
     const [reportedDate, setReportedDate] = useState("")
-    const [activities, setActivities] = useState<Api.Data[]>()
-    const [warrants, setWarrants] = useState<Api.Data[]>()
-    const [user, setUser] = useState<Api.Data>()
     const [category, setCategory] = useState("file")
     const [reportText, setReportText] = useState("")
+    const [user, setUser] = useState<Api.Data>()
 
     useEffect(() => {
         const d = new Date()
@@ -41,33 +39,50 @@ const LaporkanKegiatan = () => {
             const data = await res.json()
             setUser(data)
         })
-
-        Api.get("activity").then(async (res) => {
-            const data = await res.json()
-            setActivities(data)
-        })
-    }, [])
-
-    useEffect(() => {
-        Api.get("warrant").then(async (res) => {
-            const data = await res.json()
-            setWarrants(data)
-        })
     }, [])
 
     const handleCategoryInput: FormEventHandler<HTMLInputElement> = (e) => {
         setCategory(e.currentTarget.value)
     }
 
-    const addReport: Hooks.HandleSubmit.Handler = (e) => {
+    const handleDocumentationsInput: FormEventHandler<HTMLInputElement> = (
+        e
+    ) => {
+        const container = e.currentTarget.parentElement!
+        const files = e.currentTarget.files
+
+        if (!files) return
+
+        container.querySelectorAll(".file-name").forEach((e) => e.remove())
+
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i]
+            const fileNameEl = document.createElement("span")
+            const fileNameText = document.createTextNode(`"${file.name}" `)
+
+            fileNameEl.append(fileNameText)
+            fileNameEl.classList.add(
+                "file-name",
+                "mb-0",
+                "mt-1",
+                "fs-11",
+                "text-primary"
+            )
+
+            container.appendChild(fileNameEl)
+        }
+    }
+
+    const addReportSar: Hooks.HandleSubmit.Handler = (e) => {
         const body = new FormData(e.currentTarget)
-        Api.post("report", { body }).then((res) => {
+        Api.post("report-sar", { body }).then((res) => {
+            res.json().then((res) => console.log(res))
             if (!res.ok) return
 
             Alert.PopUp({ title: "Laporan telah disimpan!" }).fire()
         })
     }
-    const handleSubmit = useHandleSubmit(addReport)
+    const handleSubmit = useHandleSubmit(addReportSar)
 
     return (
         <Container>
@@ -78,63 +93,33 @@ const LaporkanKegiatan = () => {
             <main className="mt-5 mx-0">
                 <Card className="rounded-4">
                     <Card.Header className="d-flex justify-content-between align-items-center">
-                        <Card.Title>Laporkan Kegiatan</Card.Title>
+                        <Card.Title>Laporkan Kegiatan SAR</Card.Title>
                         <BackArrow />
                     </Card.Header>
 
                     <Card.Body>
-                        {user && activities && warrants ? (
+                        {user ? (
                             <form onSubmit={handleSubmit}>
                                 <input
                                     type="hidden"
                                     name="boat_id"
                                     value={user.boat_id}
                                 />
+                                <input
+                                    type="hidden"
+                                    name="type"
+                                    value="Harkamtibmas"
+                                />
 
                                 <Row className="row-cols-1 row-cols-xl-2">
-                                    <Col className="mb-4">
-                                        <FormLabel>Jenis Kegiatan</FormLabel>
-                                        <Row className="g-2 row-cols-1">
-                                            {activities.map(
-                                                ({ id, activity }) => (
-                                                    <Col key={id}>
-                                                        <FormCheck
-                                                            value={id}
-                                                            label={activity}
-                                                            id={activity}
-                                                            name="activities[]"
-                                                        />
-                                                    </Col>
-                                                )
-                                            )}
-                                        </Row>
-                                    </Col>
-                                    <Col className="mb-4">
-                                        <FormLabel htmlFor="warrant">
-                                            Surat Perintah
-                                        </FormLabel>
-                                        <FormSelect
-                                            name="warrant_id"
-                                            id="warrant"
-                                        >
-                                            {warrants.map(
-                                                ({ id, letter_file_name }) => (
-                                                    <option value={id} key={id}>
-                                                        {letter_file_name}
-                                                    </option>
-                                                )
-                                            )}
-                                        </FormSelect>
-                                    </Col>
                                     <Col className="mb-4">
                                         <FormLabel htmlFor="execution_warrant">
                                             Surat Perintah Pelaksanaan
                                         </FormLabel>
                                         <FormControl
+                                            type="file"
                                             name="execution_warrant"
                                             id="execution_warrant"
-                                            type="file"
-                                            accept="application/pdf"
                                         />
                                     </Col>
                                     <Col className="mb-4">
@@ -211,6 +196,19 @@ const LaporkanKegiatan = () => {
                                             </Fragment>
                                         )}
                                     </Col>
+                                    <Col className="mb-4">
+                                        <FormLabel htmlFor="documentations">
+                                            Upload Dokumentasi Kegiatan
+                                        </FormLabel>
+                                        <FormControl
+                                            type="file"
+                                            multiple
+                                            name="documentations[]"
+                                            id="documentations"
+                                            onInput={handleDocumentationsInput}
+                                            accept="image/*"
+                                        />
+                                    </Col>
                                 </Row>
 
                                 <div className="d-flex justify-content-end gap-1 mt-4">
@@ -219,7 +217,7 @@ const LaporkanKegiatan = () => {
                                 </div>
                             </form>
                         ) : (
-                            <Spinner className="d-block mx-auto" />
+                            <Spinner className="mx-auto d-block" />
                         )}
                     </Card.Body>
                 </Card>
@@ -228,4 +226,4 @@ const LaporkanKegiatan = () => {
     )
 }
 
-export default LaporkanKegiatan
+export default Laporkan
