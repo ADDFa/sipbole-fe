@@ -31,13 +31,13 @@ const nav: Dashboard.Nav = {
             to: "/admin/laporan",
             className: "laporan",
             icon: faFileInvoice,
-            text: "Laporan"
+            text: "Lap. Hasil"
         },
         {
             to: "/admin/laporkan-sar",
             className: "laporkan",
             icon: faFilePen,
-            text: "Laporkan"
+            text: "SAR"
         }
     ],
     user: [
