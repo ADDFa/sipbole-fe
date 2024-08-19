@@ -20,8 +20,8 @@ const Nav = () => {
     }
 
     const getProfile = () => {
-        if (!Auth.user) return user
-        return `${Api.baseUrl}${Auth.user.profile_picture}`
+        const userPic = Auth.user.profile_picture
+        return userPic ? `${Api.baseUrl}${Auth.user.profile_picture}` : user
     }
 
     const handleLogOut = () => {
