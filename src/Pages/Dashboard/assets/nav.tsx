@@ -34,7 +34,7 @@ const nav: Dashboard.Nav = {
             text: "Lap. Hasil"
         },
         {
-            to: "/admin/laporkan-sar",
+            to: "/admin/sar",
             className: "laporkan",
             icon: faFilePen,
             text: "SAR"

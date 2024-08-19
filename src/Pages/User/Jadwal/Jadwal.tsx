@@ -38,7 +38,7 @@ const Jadwal = () => {
                 <Card>
                     <Card.Header className="d-flex justify-content-between align-items-center">
                         <Card.Title className="mb-0 fs-4 fs-6">
-                            Jadwal Riksa Kapal
+                            Jadwal Harkamtibmas
                         </Card.Title>
                         <BackArrow />
                     </Card.Header>

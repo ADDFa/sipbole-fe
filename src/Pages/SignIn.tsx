@@ -16,7 +16,14 @@ const SignIn = () => {
             if (!res.ok) return
 
             Auth.auth = await res.json()
-            navigate("/dashboard")
+            Api.get(`user/${Auth.userId}`).then(async (res) => {
+                if (!res.ok) return
+
+                const user = await res.json()
+                Auth.user = user
+
+                navigate("/dashboard")
+            })
         })
     }
     const handleSubmit = useHandleSubmit(signIn)

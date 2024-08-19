@@ -5,6 +5,7 @@ import { Button, ListGroup, Offcanvas } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
 import user from "assets/images/user.png"
 import Auth from "Functions/Auth"
+import Api from "Functions/Api"
 
 const Nav = () => {
     const navigate = useNavigate()
@@ -18,6 +19,11 @@ const Nav = () => {
         setProfileNav(false)
     }
 
+    const getProfile = () => {
+        if (!Auth.user) return user
+        return `${Api.baseUrl}${Auth.user.profile_picture}`
+    }
+
     const handleLogOut = () => {
         Auth.clear()
         navigate("/sign-in")
@@ -26,7 +32,7 @@ const Nav = () => {
     return (
         <Fragment>
             <Link to="#" role="button" onClick={handleProvileNavShow}>
-                <img width={50} src={user} alt="user" />
+                <img width={50} src={getProfile()} alt="user" />
             </Link>
 
             <Offcanvas

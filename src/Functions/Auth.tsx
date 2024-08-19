@@ -28,6 +28,15 @@ class Auth {
         return this.auth.payload?.id
     }
 
+    static set user(userData: Api.Data) {
+        localStorage.setItem("user", JSON.stringify(userData))
+    }
+
+    static get user() {
+        const userData = localStorage.getItem("user")
+        return userData ? JSON.parse(userData) : {}
+    }
+
     static get authId() {
         return this.auth.payload?.auth_id
     }
@@ -38,6 +47,7 @@ class Auth {
 
     static clear() {
         localStorage.removeItem(this.storageName)
+        localStorage.removeItem("user")
     }
 }
 
