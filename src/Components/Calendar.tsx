@@ -23,7 +23,7 @@ export const date = new Date()
 const Calendar: FC<Calendar> = ({ onClick, marks, onValue }) => {
     const [year, setYear] = useState(date.getFullYear())
     const [month, setMonth] = useState(date.getMonth())
-    const [dateLength, setDateLength] = useState<number>(0)
+    const [dateLength, setDateLength] = useState(0)
     const [dates, setDates] = useState<number[]>([])
 
     useEffect(() => {
@@ -43,7 +43,7 @@ const Calendar: FC<Calendar> = ({ onClick, marks, onValue }) => {
     }, [marks, dates])
 
     useEffect(() => {
-        setDateLength(new Date(year, month, 0).getDate())
+        setDateLength(new Date(year, month + 1, 0).getDate())
         if (onValue) onValue({ monthIndex: month, year })
     }, [year, month])
 
