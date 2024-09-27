@@ -1,5 +1,6 @@
 import {
     faInfoCircle,
+    faTrash,
     faTriangleExclamation
 } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -13,6 +14,7 @@ import LetterTextModal from "Pages/User/Laporan/Components/LetterTextModal"
 import { ChangeEventHandler, useCallback, useEffect, useState } from "react"
 import {
     Alert,
+    Button,
     Card,
     Col,
     Container,
@@ -21,6 +23,7 @@ import {
     Spinner
 } from "react-bootstrap"
 import { Link } from "react-router-dom"
+import MyAlert from "Functions/Alert"
 
 const Sar = () => {
     const [reports, setReports] = useState<Api.Data[]>()
@@ -60,6 +63,24 @@ const Sar = () => {
 
         setYear(dates[0])
         setMonth(months[monthIndex])
+    }
+
+    const handleDelete = (id: number) => {
+        MyAlert.Confirm()
+            .fire()
+            .then((e) => {
+                if (e.isDismissed) return
+
+                Api.delete(`remove-sar/${id}`).then((res) => {
+                    if (!res.ok) return
+
+                    MyAlert.PopUp({ title: "Laporan SAR dihapus!" }).fire()
+                    const newReports = reports!.filter(
+                        (report) => report.id !== id
+                    )
+                    setReports(newReports)
+                })
+            })
     }
 
     return (
@@ -137,12 +158,16 @@ const Sar = () => {
                                             >
                                                 Laporan
                                             </th>
+                                            <th className="text-center">
+                                                Aksi
+                                            </th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         {reports.map(
                                             (
                                                 {
+                                                    id,
                                                     date,
                                                     execution_warrant,
                                                     report,
@@ -186,6 +211,18 @@ const Sar = () => {
                                                                 }
                                                             />
                                                         )}
+                                                    </td>
+                                                    <td className="text-center">
+                                                        <Button
+                                                            variant="danger"
+                                                            onClick={() =>
+                                                                handleDelete(id)
+                                                            }
+                                                        >
+                                                            <FontAwesomeIcon
+                                                                icon={faTrash}
+                                                            />
+                                                        </Button>
                                                     </td>
                                                 </tr>
                                             )
